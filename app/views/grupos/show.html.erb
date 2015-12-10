@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<p>
+<strong>Nome:</strong>
+ <%= @grupo.nome %>
+</p>
+
+<h2>Grupo emails</h2>
+
+<% if @grupo.grupo_emails.any? %>
+
+    <ul>
+         <% @grupo.grupo_emails.each do |t| %>
+                <li>
+                    <%= t.email %>
+                </li>
+         <% end %>
+    </ul>
+
+<% else %>
+    <p>none available</p>
+<% end %>
+
+<%= link_to 'Edit', edit_grupo_path(@grupo) %> |
+<%= link_to 'Back', grupos_path %>

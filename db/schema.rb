@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130223655) do
+ActiveRecord::Schema.define(version: 20151209211340) do
+
+  create_table "contatos", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "email"
+    t.string   "tel"
+    t.string   "endereco"
+    t.string   "obs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "grupo_emails", force: :cascade do |t|
+    t.integer  "grupo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "email"
+  end
+
+  add_index "grupo_emails", ["grupo_id"], name: "index_grupo_emails_on_grupo_id"
+
+  create_table "grupos", force: :cascade do |t|
+    t.string   "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
 
   create_table "hotels", force: :cascade do |t|
     t.string   "name"

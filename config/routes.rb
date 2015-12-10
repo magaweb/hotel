@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  resources :contatos
   get 'welcome/index'
 
   devise_for :users
   devise_for :models
+
   resources :room_categories
   resources :hotels
+  resources :grupos
+  resources :grupo_emails
 
 
   root 'welcome#index'
