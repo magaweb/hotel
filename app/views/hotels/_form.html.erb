@@ -31,8 +31,24 @@
       </div>
    </div>
  <% end %>
+
   <div class="actions">
-    <%= f.add_nested_fields_link :room_categories %><br><br>
+      <%= f.add_nested_fields_link :room_categories %><br><br>
+  </div>
+  <label for="grupos">Compartilhamento:</label>
+  <ul>
+
+    <% Grupo.all.each do |grupo| %>
+
+      <li>
+        <%= check_box_tag "hotel[grupo_ids][]", grupo.id, f.object.grupos.include?(grupo) %>
+        <%= grupo.nome %>
+      </li>
+    <% end %>
+  </ul>
+
+
+  <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

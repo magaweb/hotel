@@ -6,12 +6,14 @@ class HotelsController < ApplicationController
 
 
   def index
+
         if params[:search]
             @hotels = Hotel.where(user_id: current_user).search(params[:search]).order("created_at DESC")
         else
             @hotels = Hotel.where(user_id: current_user).order('created_at DESC')
         end
-    end
+
+  end
 
   # GET /hotels/1
   # GET /hotels/1.json
@@ -98,6 +100,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
    def hotel_params
-     params.require(:hotel).permit(:name, :image, room_categories_attributes: [ :id, :name, :arquivo, :_destroy,  ])
+     params.require(:hotel).permit(:name, :image, room_categories_attributes: [ :id, :name, :arquivo, :_destroy,  ], :grupo_ids => [])
    end
 end
