@@ -43,6 +43,9 @@
       <li>
         <%= check_box_tag "hotel[grupo_ids][]", grupo.id, f.object.grupos.include?(grupo) %>
         <%= grupo.nome %>
+
+        <%= select_tag "hotel[grupo_tipos][]", options_for_select([["Ler", 1], ["Escrever", 2]]),
+        html_options= {:style => "width: 100px;"} %>
       </li>
     <% end %>
   </ul>

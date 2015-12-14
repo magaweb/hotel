@@ -100,6 +100,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
    def hotel_params
-     params.require(:hotel).permit(:name, :image, room_categories_attributes: [ :id, :name, :arquivo, :_destroy,  ], :grupo_ids => [])
+     params.require(:hotel).permit(:name, :image, room_categories_attributes: [ :id, :name, :arquivo, :_destroy,  ], :grupo_ids => [] , :grupo_tipos => [])
    end
 end

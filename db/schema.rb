@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210203446) do
+ActiveRecord::Schema.define(version: 20151213182221) do
 
   create_table "Grupos_Hotels", id: false, force: :cascade do |t|
     t.integer "hotel_id", null: false
     t.integer "grupo_id", null: false
+    t.integer "tipo"
   end
 
   create_table "contatos", force: :cascade do |t|

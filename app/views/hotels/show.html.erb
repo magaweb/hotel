@@ -18,5 +18,11 @@ imagem:<br>
 <% else %>
 <p>none available</p>
 <% end %>
+<h2>Compartilhamento (grupos)</h2>
+ <ul>
+   <% @hotel.grupos.each do |g| %>
+      <li><%= link_to g.nome, g %></li>
+   <% end %>
+</ul>
 <%= link_to 'Edit', edit_hotel_path(@hotel) %> |
 <%= link_to 'Back', hotels_path %>
