@@ -4,6 +4,14 @@ class HotelsController < ApplicationController
   # GET /hotels
   # GET /hotels.json
 
+ before_filter :process_shares_attrs, only: [:create, :update]
+
+  def process_shares_attrs
+    params[:hotel][:shares_attributes].values.each do |cat_attr|
+      cat_attr[:_destroy] = true if cat_attr[:enable] != '1'
+    end
+  end
+
 
   def index
 
@@ -14,6 +22,8 @@ class HotelsController < ApplicationController
         end
 
   end
+
+
 
   # GET /hotels/1
   # GET /hotels/1.json
@@ -100,6 +110,10 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
    def hotel_params
-     params.require(:hotel).permit(:name, :image, room_categories_attributes: [ :id, :name, :arquivo, :_destroy,  ], :grupo_ids => [] , :grupo_tipos => [])
+     params.require(:hotel).permit(
+                  :name, :image,
+                  room_categories_attributes: [ :id, :name, :arquivo, :_destroy,  ],
+                  shares_attributes: [ :id, :grupo_id, :hotel_id, :tipo, :enable, :_destroy,  ]
+                  )
    end
 end

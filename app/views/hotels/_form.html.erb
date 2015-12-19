@@ -38,16 +38,26 @@
   <label for="grupos">Compartilhamento:</label>
   <ul>
 
-    <% Grupo.all.each do |grupo| %>
 
-      <li>
-        <%= check_box_tag "hotel[grupo_ids][]", grupo.id, f.object.grupos.include?(grupo) %>
-        <%= grupo.nome %>
 
-        <%= select_tag "hotel[grupo_tipos][]", options_for_select([["Ler", 1], ["Escrever", 2]]),
-        html_options= {:style => "width: 100px;"} %>
-      </li>
-    <% end %>
+
+<%= f.fields_for :shares, @hotel.initialized_shares do |builder| %>
+    <% grupo = builder.object.grupo %>
+    <%= builder.hidden_field :grupo_id %>
+
+
+    <div class="field">
+      <%= builder.label :enable, grupo.nome %>
+      <%= builder.check_box :enable %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :tipo %><br />
+      <%= builder.text_field :tipo %>
+    </div>
+  <% end %>
+
+
   </ul>
 
 

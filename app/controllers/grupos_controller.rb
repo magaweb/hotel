@@ -99,7 +99,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
    def grupo_params
-     params.require(:grupo).permit(:nome, grupo_emails_attributes: [ :id, :nome, :email, :tipo, :_destroy,  ])
+     params.require(:grupo).permit(:nome, grupo_emails_attributes: [ :id, :nome, :email,  :_destroy,  ] , shares_attributes: [ :id, :grupo_id, :hotel_id, :tipo, :_destroy,  ])
    end
 
 end

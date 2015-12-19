@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213182221) do
+ActiveRecord::Schema.define(version: 20151219111540) do
 
   create_table "Grupos_Hotels", id: false, force: :cascade do |t|
     t.integer "hotel_id", null: false
@@ -80,6 +80,15 @@ ActiveRecord::Schema.define(version: 20151213182221) do
   end
 
   add_index "room_categories", ["hotel_id"], name: "index_room_categories_on_hotel_id"
+
+  create_table "shares", force: :cascade do |t|
+    t.integer  "hotel_id"
+    t.integer  "grupo_id"
+    t.integer  "tipo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "enable"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
