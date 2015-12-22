@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
       <th>Nome</th>
       <th>Email</th>
       <th>Tel</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @contatos.each do |contato| %>
       <tr>
+        <td><%= contato.user_id %></td>
         <td><%= contato.nome %></td>
         <td><%= contato.email %></td>
         <td><%= contato.tel %></td>

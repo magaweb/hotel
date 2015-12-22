@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :shares
   resources :contatos
+  resources :shares
   get 'welcome/index'
 
   devise_for :users

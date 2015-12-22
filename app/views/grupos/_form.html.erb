@@ -14,21 +14,18 @@
      <%= f.label :nome %><br>
      <%= f.text_field :nome %>
   </div>
-  <h2>Emails</h2>
 
-  <%= f.nested_fields_for :grupo_emails do |t| %>
-    <div class="grupo_emails_fields">
-      <div class="field">
-         <%= t.remove_nested_fields_link %><br>
-         <%= t.label :email %><br>
-         <%= t.text_field :email %>
-         <%#= room_category.check_box :_destroy %>
-         <%#= room_category.label :_destroy, 'remove' %>
-      </div>
-   </div>
- <% end %>
+
+
+<label for="grupos">Contatos:</label>
+
+
+   <% Contato.all.each do |contato| %>
+                      <%= check_box_tag "grupo[contato_ids][]", contato.id, @grupo.contatos.include?(contato) %>
+                      <%= contato.nome %>
+                   <% end %>
+
   <div class="actions">
-    <%= f.add_nested_fields_link :grupo_emails %><br><br>
     <%= f.submit %>
   </div>
 <% end %>

@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  user_id: 1
   nome: MyString
   email: MyString
   tel: MyString
   endereco: MyString
-  obs: MyString
+  obs: MyText
 
 two:
+  user_id: 1
   nome: MyString
   email: MyString
   tel: MyString
   endereco: MyString
-  obs: MyString
+  obs: MyText

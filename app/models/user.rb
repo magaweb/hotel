@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :hotels
   has_many :grupos
+  has_many :contatos
 end

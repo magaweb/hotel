@@ -4,12 +4,12 @@
  <%= @grupo.nome %>
 </p>
 
-<h2>Grupo emails</h2>
+<h2>Contatos</h2>
 
-<% if @grupo.grupo_emails.any? %>
+<% if @grupo.contatos.any? %>
 
     <ul>
-         <% @grupo.grupo_emails.each do |t| %>
+         <% @grupo.contatos.each do |t| %>
                 <li>
                     <%= t.email %>
                 </li>

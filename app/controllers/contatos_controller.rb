@@ -1,10 +1,21 @@
 class ContatosController < ApplicationController
   before_action :set_contato, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /contatos
   # GET /contatos.json
   def index
     @contatos = Contato.all
+  end
+
+  def index
+
+        if params[:search]
+            @contatos = Contato.where(user_id: current_user).search(params[:search]).order("created_at DESC")
+        else
+            @contatos = Contato.where(user_id: current_user).order('created_at DESC')
+        end
+
   end
 
   # GET /contatos/1
@@ -14,8 +25,10 @@ class ContatosController < ApplicationController
 
   # GET /contatos/new
   def new
-    @contato = Contato.new
+    @contato = current_user.contatos.build
   end
+
+
 
   # GET /contatos/1/edit
   def edit
@@ -69,6 +82,6 @@ class ContatosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contato_params
-      params.require(:contato).permit(:nome, :email, :tel, :endereco, :obs)
+      params.require(:contato).permit(:user_id, :nome, :email, :tel, :endereco, :obs)
     end
 end

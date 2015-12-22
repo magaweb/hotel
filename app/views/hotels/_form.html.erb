@@ -38,10 +38,7 @@
   <label for="grupos">Compartilhamento:</label>
   <ul>
 
-
-
-
-<%= f.fields_for :shares, @hotel.initialized_shares do |builder| %>
+ <%= f.fields_for :shares, @hotel.initialized_shares do |builder| %>
     <% grupo = builder.object.grupo %>
     <%= builder.hidden_field :grupo_id %>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219111540) do
+ActiveRecord::Schema.define(version: 20151221200844) do
 
   create_table "Grupos_Hotels", id: false, force: :cascade do |t|
     t.integer "hotel_id", null: false
@@ -20,13 +20,19 @@ ActiveRecord::Schema.define(version: 20151219111540) do
   end
 
   create_table "contatos", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "nome"
     t.string   "email"
     t.string   "tel"
     t.string   "endereco"
-    t.string   "obs"
+    t.text     "obs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contatos_grupos", id: false, force: :cascade do |t|
+    t.integer "grupo_id",   null: false
+    t.integer "contato_id", null: false
   end
 
   create_table "grupo_emails", force: :cascade do |t|
