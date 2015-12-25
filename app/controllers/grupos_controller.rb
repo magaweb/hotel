@@ -6,16 +6,26 @@ class GruposController < ApplicationController
   # GET /grupos.json
 
 
+
+
   def index
         if params[:search]
             @grupos = Grupo.where(user_id: current_user).search(params[:search]).order("created_at DESC")
         else
             @grupos = Grupo.where(user_id: current_user).order('created_at DESC')
-            @grupos_2 = Grupo.where(user_id: current_user).order('created_at DESC')
         end
 
+        @grupos_shares = Grupo.find_by_sql(["
 
-    end
+            select * from grupos where  id in(
+                  select grupo_id from contatos_grupos where contato_id in (
+                        select id from contatos where email = :email
+                  )
+             )
+        ",{:email => current_user.email}])
+ end
+
+
 
   # GET /grupos/1
   # GET /grupos/1.json

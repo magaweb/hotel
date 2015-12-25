@@ -8,29 +8,33 @@
 </head>
 <body>
 <% if user_signed_in? %>
-  <li><%=current_user.email%></li>
   <li>
-  <%= link_to('Edit registration', edit_user_registration_path) %>
+    <%= form_tag("/search", method: "get") do %>
+        <b>MagaNotes</b>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Ok") %>
+    <% end %>
   </li>
+  <li><%=current_user.email%> / <%= link_to('Edit registration', edit_user_registration_path) %>
 <% else %>
   <li>
   <%= link_to('Register', new_user_registration_path)  %>
   </li>
 <% end %>
 <% if user_signed_in? %>
+  /
+    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 
   <li>
-    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-  </li>
-  <li>
+    <%= link_to('Home', welcome_index_path) %>
+    /
     <%= link_to('Contatos', contatos_path) %>
+     /
+     <%= link_to('Grupos', grupos_path) %>
+      /
+      <%= link_to('Hotel', hotels_path) %>
   </li>
-  <li>
-    <%= link_to('Grupos', grupos_path) %>
-  </li>
-  <li>
-    <%= link_to('Hotel', hotels_path) %>
-  </li>
+
 <% else %>
   <li>
   <%= link_to('Login', new_user_session_path)  %>

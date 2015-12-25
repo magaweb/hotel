@@ -8,4 +8,7 @@ class Grupo < ActiveRecord::Base
 
 
     accepts_nested_attributes_for :contatos, :shares, allow_destroy: true
+
+
+
 end

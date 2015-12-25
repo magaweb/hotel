@@ -6,6 +6,8 @@ class HotelsController < ApplicationController
 
  before_filter :process_shares_attrs, only: [:create, :update]
 
+
+
   def process_shares_attrs
     params[:hotel][:shares_attributes].values.each do |cat_attr|
       cat_attr[:_destroy] = true if cat_attr[:enable] != '1'

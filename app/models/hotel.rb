@@ -9,7 +9,7 @@ class Hotel < ActiveRecord::Base
   #has_and_belongs_to_many :grupos
 
 
-
+  cattr_accessor :current_user
 
   accepts_nested_attributes_for :grupos, :shares, allow_destroy: true
 
@@ -23,7 +23,7 @@ class Hotel < ActiveRecord::Base
 
   def initialized_shares # this is the key method
     [].tap do |o|
-      Grupo.all.each do |grupo|
+      Grupo.where(user_id: Hotel.current_user).find_each do |grupo|
         if c = shares.find { |c| c.grupo_id == grupo.id }
           o << c.tap { |c| c.enable ||= true }
         else
