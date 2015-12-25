@@ -11,7 +11,10 @@ class GruposController < ApplicationController
             @grupos = Grupo.where(user_id: current_user).search(params[:search]).order("created_at DESC")
         else
             @grupos = Grupo.where(user_id: current_user).order('created_at DESC')
+            @grupos_2 = Grupo.where(user_id: current_user).order('created_at DESC')
         end
+
+
     end
 
   # GET /grupos/1

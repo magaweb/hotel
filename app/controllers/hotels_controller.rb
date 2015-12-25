@@ -21,7 +21,26 @@ class HotelsController < ApplicationController
             @hotels = Hotel.where(user_id: current_user).order('created_at DESC')
         end
 
+        @hotels_shares = Hotel.find_by_sql(["
+        select * from hotels where id in (
+            select hotel_id from shares where grupo_id in(
+                  select grupo_id from contatos_grupos where contato_id in (
+                        select id from contatos where email = :email
+                  )
+             )
+        )",{:email => current_user.email}])
+
+       #Hotel.find(16).grupos.first.contatos.where(email: "teste@teste.com")
+
+        #Hotel.all.each do |h|
+         #  @hotels_shares = h
+        #end
+
   end
+
+
+#Hotel.select("*").joins(:user).where(:users => {:u_id => @user_session.id})
+
 
 
 
