@@ -1,28 +1,34 @@
-<p id="notice"><%= notice %></p>
-imagem:<br>
-<%= image_tag attachment_url(@hotel, :image, :fill, 300, 300) %>
-<p>
-<strong>Name:</strong>
- <%= @hotel.name %>
-</p>
-<h2>Room Categories</h2>
-<% if @hotel.room_categories.any? %>
-<ul>
- <% @hotel.room_categories.each do |room_category| %>
-<li>
-    <%= link_to "Arquivo", attachment_url(room_category, :arquivo) %> -
-    <%= link_to room_category, room_category %>
-</li>
- <% end %>
-</ul>
-<% else %>
-<p>none available</p>
+<% if user_signed_in? || (@hotel.public_share==1) %>
+        <p id="notice"><%= notice %></p>
+        imagem:<br>
+        <%= image_tag attachment_url(@hotel, :image, :fill, 300, 300) %>
+        <p>
+        <strong>Name:</strong>
+         <%= @hotel.name %>
+        </p>
+        <h2>Room Categories</h2>
+        <% if @hotel.room_categories.any? %>
+        <ul>
+         <% @hotel.room_categories.each do |room_category| %>
+        <li>
+            <%= link_to "Arquivo", attachment_url(room_category, :arquivo) %> -
+            <%= link_to room_category, room_category %>
+        </li>
+         <% end %>
+        </ul>
+        <% else %>
+        <p>none available</p>
+        <% end %>
+        <% if user_signed_in? %>
+            <h2>Compartilhamento (grupos)</h2>
+             <ul>
+               <% @hotel.grupos.each do |g| %>
+                  <li><%= link_to g.nome, g %></li>
+               <% end %>
+            </ul>
+            <%= link_to 'Edit', edit_hotel_path(@hotel) %> |
+            <%= link_to 'Back', hotels_path %>
+        <% end %>
+        <% else %>
+            <h2>Acesso proibido</h2>
 <% end %>
-<h2>Compartilhamento (grupos)</h2>
- <ul>
-   <% @hotel.grupos.each do |g| %>
-      <li><%= link_to g.nome, g %></li>
-   <% end %>
-</ul>
-<%= link_to 'Edit', edit_hotel_path(@hotel) %> |
-<%= link_to 'Back', hotels_path %>

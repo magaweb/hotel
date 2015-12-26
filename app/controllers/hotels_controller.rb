@@ -1,6 +1,6 @@
 class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   # GET /hotels
   # GET /hotels.json
 
@@ -132,7 +132,7 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
    def hotel_params
      params.require(:hotel).permit(
-                  :name, :image,
+                  :name, :image, :public_share,
                   room_categories_attributes: [ :id, :name, :arquivo, :_destroy,  ],
                   shares_attributes: [ :id, :grupo_id, :hotel_id, :tipo, :enable, :_destroy,  ]
                   )

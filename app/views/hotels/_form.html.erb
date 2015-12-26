@@ -47,10 +47,17 @@
       <%= builder.check_box :enable %>
       <%= builder.label :enable, grupo.nome %>
       <%= builder.radio_button :tipo, '1' %> Leitura
-      <%= builder.radio_button :tipo, '2' %> Escrita
+      <%= builder.radio_button :tipo, '2' %> Edição
     </div>
   <% end %>
 
+   <div class="field">
+     <%= f.label :public_share, "Outros" %><br>
+     <%= f.radio_button :public_share, '0' %> Bloqueado
+     <%= f.radio_button :public_share, '1' %> Leitura
+     <br>Link:  <input size=30 type=text value="http://localhost:3000/hotels/<%= @hotel.id%>">
+
+  </div>
 
   </ul>
 
