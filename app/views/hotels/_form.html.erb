@@ -44,13 +44,10 @@
 
 
     <div class="field">
-      <%= builder.label :enable, grupo.nome %>
       <%= builder.check_box :enable %>
-    </div>
-
-    <div class="field">
-      <%= builder.label :tipo %><br />
-      <%= builder.text_field :tipo %>
+      <%= builder.label :enable, grupo.nome %>
+      <%= builder.radio_button :tipo, '1' %> Leitura
+      <%= builder.radio_button :tipo, '2' %> Escrita
     </div>
   <% end %>
 

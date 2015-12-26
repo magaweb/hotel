@@ -19,11 +19,16 @@ class Hotel < ActiveRecord::Base
 
 
 
-
-
   def initialized_shares # this is the key method
     [].tap do |o|
-      Grupo.where(user_id: Hotel.current_user).find_each do |grupo|
+      Grupo.find_by_sql(["
+
+            select * from grupos where user_id = :user or id in(
+                  select grupo_id from contatos_grupos where contato_id in (
+                        select id from contatos where email = :email
+                  )
+             )
+        ",{:email => Hotel.current_user.email, :user => Hotel.current_user}]).each do |grupo|
         if c = shares.find { |c| c.grupo_id == grupo.id }
           o << c.tap { |c| c.enable ||= true }
         else
@@ -32,6 +37,8 @@ class Hotel < ActiveRecord::Base
       end
     end
   end
+
+
 
   #attr_accessible :grupos_attributes
   def to_s
